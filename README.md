@@ -15,7 +15,7 @@ I have used and modified code from the following repositories:
 
 I used Show_and_Tell, a seq2seq image captioning model, as a starting point for my model framework. I have modified Show_and_Tell's decoder to be modeled after img2poem's generator so that it can be trained on a reward function. I added the discriminator from SeqGAN, which is an unconditional text generation GAN. To make the discriminator a conditional model, I referenced code from Conditional-GAN, which is a conditional image generation GAN. 
 
-I wrote scripts for scraping artwork images and their corresponding analysis paragraphs from [theartstory](theartstory.com) and [Smithsonian American Art Museum](https://americanart.si.edu/). 
+I wrote scripts for scraping artwork images and their corresponding analysis paragraphs from [theartstory](https://www.theartstory.org/) and [Smithsonian American Art Museum](https://americanart.si.edu/). 
 
 More details about my modifications to existing code can be found as comments in the files.  
 
