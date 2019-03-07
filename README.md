@@ -25,15 +25,13 @@ More details about my modifications to existing code can be found as comments in
 * Make model more suited for long text generation
 
 ### Results
-
-![francis bacon](/images/art_desc785.jpg ?raw=true)
-
-"sexual of took boy singing communist mixture to above and center emphasizing repetition stand melting."
-
-![stainedglass](/images/art_desc105.jpg ?raw=true)
-"1908 to one most movements geometric is when, major one humanize(avant-garde) behind in created flowers theme distribution is playful and the."
-
-![circles](/images/art_desc2455.jpg ?raw=true)
-"circles depict shore\\ a home white a through features warhol world the, a looking, state to,."
+<img src="https://github.com/audreycui/pix2para/blob/master/images/art_desc785.jpg" height="220px" align="left">
+<br/>"sexual of took boy singing communist mixture to above and center emphasizing repetition stand melting."
+<br/><br/><br/><br/><br/><br/><br/>
+<img src="https://github.com/audreycui/pix2para/blob/master/images/art_desc105.jpg" height="220px" align="left">
+<br/>"1908 to one most movements geometric is when, major one humanize(avant-garde) behind in created flowers theme distribution is playful and the."
+<br/><br/><br/><br/><br/><br/><br/>
+<img src="https://github.com/audreycui/pix2para/blob/master/images/art_desc2455.jpg" height="220px" align="left">
+<br/>"circles depict shore\\ a home white a through features warhol world the, a looking, state to,."
 
 
