@@ -15,11 +15,25 @@ I have used and modified code from the following repositories:
 
 I used Show_and_Tell, a seq2seq image captioning model, as a starting point for my model framework. I have modified Show_and_Tell's decoder to be modeled after img2poem's generator so that it can be trained on a reward function. I added the discriminator from SeqGAN, which is an unconditional text generation GAN. To make the discriminator a conditional model, I referenced code from Conditional-GAN, which is a conditional image generation GAN. 
 
-I wrote scripts for scraping artwork images and their corresponding analysis paragraphs from [theartstory](https://www.theartstory.org/) and [Smithsonian American Art Museum](https://americanart.si.edu/). 
+I wrote scripts for scraping artwork images and their corresponding analysis paragraphs from [The Art Story](https://www.theartstory.org/) and [Smithsonian American Art Museum](https://americanart.si.edu/). 
 
 More details about my modifications to existing code can be found as comments in the files.  
 
 ### TODO
-* Finish debugging current image to text GAN model 
-* Add data loading and processing methods specific for artwork and artwork analysis paragraphs (current model uses Microsoft COCO image-caption dataset; current data loading/processing methods are borrowed from Show_and_Tell)
-* Add discriminators that distinguish between artwork analyis vs. normal image caption, relevant to artwork vs irrelevant to artwork 
+* Hyperparameter tuning
+* Add discriminators that distinguish between artwork analyis vs. normal image caption, relevant to artwork vs irrelevant to artwork
+* Make model more suited for long text generation
+
+### Results
+
+![francis bacon](/images/art_desc785.jpg ?raw=true)
+
+"sexual of took boy singing communist mixture to above and center emphasizing repetition stand melting."
+
+![stainedglass](/images/art_desc105.jpg ?raw=true)
+"1908 to one most movements geometric is when, major one humanize(avant-garde) behind in created flowers theme distribution is playful and the."
+
+![circles](/images/art_desc2455.jpg ?raw=true)
+"circles depict shore\\ a home white a through features warhol world the, a looking, state to,."
+
+
