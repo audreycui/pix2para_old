@@ -19,6 +19,12 @@ from keras.applications.vgg19 import VGG19
 from keras import backend as K
 from keras.models import Model
 
+import mxnet as mx
+import cv2
+from img2poem.symbol_vgg import VGG
+import img2poem.symbol_sentiment
+import config
+
 class BaseModel(object):
     def __init__(self, config):
         self.config = config
@@ -30,13 +36,49 @@ class BaseModel(object):
         self.global_step = tf.Variable(0,
                                        name = 'global_step',
                                        trainable = False)
+
         self.build()
 
-    def build(self):
-        raise NotImplementedError()
+    def get_imagefeatures(self, image_files, batch_size):
+        return self.image_loader.extract_features_vgg19(self.trained_model, image_files, batch_size)
 
-    def extract_features(self, images):
-        raise NotImplementedError()
+    def build(self):
+        # use pretrained vgg model to extract image features
+        net = VGG19(weights='imagenet')
+        self.trained_model = Model(input= net.input, output= net.get_layer('fc2').output)
+
+        self.object_model = self.get_mod()
+        self.object_model.load_params('./img2poem/model/object.params')
+
+        self.sentiment_model = self.get_mod(sym = img2poem.symbol_sentiment.get_sym(), img_len = 227)
+        self.sentiment_model.load_params('./img2poem/model/Sentiment.params')
+
+        self.scene_model = self.get_mod()
+        self.scene_model.load_params('./img2poem/model/scene.params')
+        #self.sentiment_model = Model(input= net.input, output= net.get_layer('block3_conv1').output)
+
+    def get_mod(self, output_name = 'relu7_output', sym = None, img_len = 224):
+        if sym is None:
+            vgg = VGG()
+            sym = vgg.get_symbol(num_classes = 1000, 
+                      blocks = [(2, 64),
+                                (2, 128),
+                                (3, 256), 
+                                (3, 512),
+                                (3, 512)])
+            internals = sym.get_internals()
+            sym = internals[output_name]
+        ctx = mx.cpu()
+        mod = mx.module.Module(
+                context = ctx,
+                symbol = sym,
+                data_names = ("data", ),
+                label_names = ()
+        )
+
+        mod.bind(data_shapes = [("data", (1, 3, 224, 224))], for_training = False)
+
+        return mod
 
     def train(self, sess, train_data):
         raise NotImplementedError()
@@ -175,8 +217,6 @@ class BaseModel(object):
                 sess.run(v.assign(data_dict[v.name]))
                 count += 1
         print("%d tensors loaded." %count)
-
-    
 
     def load_cnn(self, session, data_path, ignore_missing=True):
         """ Load a pretrained CNN model. """
