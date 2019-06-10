@@ -1,3 +1,4 @@
+!!!This repository is deprecated. See [newest version](https://github.com/audreycui/pix2para).
 # pix2para
 From Pixel to Paragraph: A Deep Artwork Analysis Paragraph Generator
 
